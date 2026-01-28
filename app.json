@@ -1,0 +1,11 @@
+{
+  "name": "bid-monitor-web",
+  "version": "1.0.0",
+  "description": "Public Bidding Monitor Web Application",
+  "scripts": {
+    "start": "gunicorn app:app"
+  },
+  "engines": {
+    "python": "3.11.x"
+  }
+}
