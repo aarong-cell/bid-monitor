@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bid Tracker - Public Bidding Opportunities</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Bid Tracker</span>
+                </div>
+                <div class="location-badge">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Cleveland, OH</span>
+                </div>
+            </div>
+            <div class="nav-right">
+                <button class="icon-btn" id="notificationBtn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </button>
+                <button class="icon-btn" title="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <div class="user-menu">
+                    <img src="https://ui-avatars.com/api/?name=User&background=667eea&color=fff" alt="User">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Left Sidebar - Filters -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-filter"></i> Filters</h3>
+                <button class="text-btn" id="clearFilters">Clear All</button>
+            </div>
+
+            <div class="filter-section">
+                <h4>Search</h4>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search opportunities...">
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h4>Location</h4>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="filter-checkbox" data-filter="location" value="cleveland" checked>
+                    <span>Cleveland</span>
+                    <span class="count">2</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="filter-checkbox" data-filter="location" value="cuyahoga" checked>
+                    <span>Cuyahoga County</span>
+                    <span class="count">2</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="filter-checkbox" data-filter="location" value="ohio" checked>
+                    <span>State of Ohio</span>
+                    <span class="count">1</span>
+                </label>
+            </div>
+
+            <div class="filter-section">
+                <h4>Type</h4>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="filter-checkbox" data-filter="type" value="municipal" checked>
+                    <span class="type-badge municipal-badge-sm">Municipal</span>
+                    <span class="count">2</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="filter-checkbox" data-filter="type" value="county" checked>
+                    <span class="type-badge county-badge-sm">County</span>
+                    <span class="count">2</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="filter-checkbox" data-filter="type" value="state" checked>
+                    <span class="type-badge state-badge-sm">State</span>
+                    <span class="count">1</span>
+                </label>
+            </div>
+
+            <div class="filter-section">
+                <h4>Deadline</h4>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="filter-checkbox" data-filter="deadline" value="urgent" checked>
+                    <span>Next 7 Days</span>
+                    <span class="count urgent">2</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="filter-checkbox" data-filter="deadline" value="soon" checked>
+                    <span>Next 14 Days</span>
+                    <span class="count">3</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" class="filter-checkbox" data-filter="deadline" value="later" checked>
+                    <span>Beyond 14 Days</span>
+                    <span class="count">0</span>
+                </label>
+            </div>
+
+            <div class="filter-section">
+                <h4>Keywords</h4>
+                <div class="keyword-tags">
+                    <span class="keyword-tag active" data-keyword="stormwater">
+                        <i class="fas fa-droplet"></i> Stormwater
+                    </span>
+                    <span class="keyword-tag active" data-keyword="vac-truck">
+                        <i class="fas fa-truck"></i> Vac Truck
+                    </span>
+                    <span class="keyword-tag active" data-keyword="cleaning">
+                        <i class="fas fa-broom"></i> Cleaning
+                    </span>
+                    <span class="keyword-tag active" data-keyword="sewer">
+                        <i class="fas fa-water"></i> Sewer
+                    </span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="content">
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon total">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalCount">5</h3>
+                        <p>Total Opportunities</p>
+                    </div>
+                    <div class="stat-trend up">
+                        <i class="fas fa-arrow-up"></i> 2 new
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon municipal">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="municipalCount">2</h3>
+                        <p>Municipal Bids</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon county">
+                        <i class="fas fa-map"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="countyCount">2</h3>
+                        <p>County Bids</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon state">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="stateCount">1</h3>
+                        <p>State Bids</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Bar -->
+            <div class="action-bar">
+                <div class="action-left">
+                    <h2>Active Opportunities</h2>
+                    <div class="last-updated">
+                        <i class="fas fa-sync-alt rotating"></i>
+                        <span>Last updated: <strong id="lastUpdated">Just now</strong></span>
+                    </div>
+                </div>
+                <div class="action-right">
+                    <button class="btn btn-secondary" id="exportBtn">
+                        <i class="fas fa-download"></i> Export CSV
+                    </button>
+                    <button class="btn btn-primary" id="refreshBtn">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="emailToggle" checked>
+                        <span class="toggle-slider"></span>
+                        <span class="toggle-label">Email Alerts</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Opportunities Feed -->
+            <div id="opportunitiesContainer" class="opportunities-grid">
+                <!-- Opportunities will be dynamically inserted here -->
+            </div>
+
+            <!-- Empty State (hidden by default) -->
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <i class="fas fa-inbox"></i>
+                <h3>No opportunities found</h3>
+                <p>Try adjusting your filters or search criteria</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Panel (Hidden by default) -->
+    <div id="notificationPanel" class="notification-panel">
+        <div class="notification-header">
+            <h3>Notifications</h3>
+            <button class="close-btn" id="closeNotifications">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-list">
+            <div class="notification-item unread">
+                <div class="notification-icon new">
+                    <i class="fas fa-sparkles"></i>
+                </div>
+                <div class="notification-content">
+                    <h4>New Opportunity Added</h4>
+                    <p>Storm Sewer Cleaning and CCTV Inspection Services</p>
+                    <span class="notification-time">2 hours ago</span>
+                </div>
+            </div>
+            <div class="notification-item unread">
+                <div class="notification-icon warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="notification-content">
+                    <h4>Deadline Approaching</h4>
+                    <p>Street Sweeping bid closes in 3 days</p>
+                    <span class="notification-time">5 hours ago</span>
+                </div>
+            </div>
+            <div class="notification-item">
+                <div class="notification-icon info">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="notification-content">
+                    <h4>System Update</h4>
+                    <p>Daily report generated successfully</p>
+                    <span class="notification-time">1 day ago</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
