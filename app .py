@@ -1,3 +1,4 @@
+# Updated for deployment
 #!/usr/bin/env python3
 """
 Bid Monitor Web Application - Backend API
